@@ -6,7 +6,8 @@ export const LIST_USERS = gql`
       items {
         id,
         name,
-        description
+        description,
+        createdAt
       },
       nextToken
     }

@@ -35,7 +35,9 @@ const Home: NextPage = () => {
         {
           users.map(item => (
             <UserCard
+              createdAt={item.createdAt}
               description={item.description}
+              id={item.id}
               key={item.id}
               name={item.name}
             />
