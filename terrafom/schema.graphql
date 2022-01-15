@@ -19,7 +19,7 @@ type Mutation {
 
 type Query {
 	getUser(id: ID!): User
-	listUser(limit: Int!, nextToken: String!, filter: TableUserFilterInput): UserConnection
+	listUser(limit: Int!, nextToken: String, filter: TableUserFilterInput): UserConnection
 }
 
 input TableBooleanFilterInput {

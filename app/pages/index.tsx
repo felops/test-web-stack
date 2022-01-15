@@ -1,11 +1,21 @@
-import type { NextPage } from 'next'
+import React from 'react'
 import Head from 'next/head'
+import type { NextPage } from 'next'
+
+import { useUserList } from '../hooks/useUserList'
 
 import Button from '../components/Button'
 import Input from '../components/Input'
 import UserCard from '../components/UserCard'
 
 const Home: NextPage = () => {
+  const {
+    users,
+    isLoading,
+    showButton,
+    loadMore,
+  } = useUserList()
+
   return (
     <div className="bg-gray-custom min-h-screen">
       <Head>
@@ -16,19 +26,34 @@ const Home: NextPage = () => {
 
       <main className="container mx-auto">
         <div className="flex justify-between p-6 pt-32">
-          <h1 className="font-light text-3xl">Users list</h1>
+          <h1 className="font-light text-4xl">Users list</h1>
           <div className="basis-1/3">
             <Input />
           </div>
         </div>
-        <div className="flex space-around">
-          <UserCard />
-          <UserCard />
-          <UserCard />
+        <div className="flex flex-wrap space-around">
+        {
+          users.map(item => (
+            <UserCard
+              description={item.description}
+              key={item.id}
+              name={item.name}
+            />
+          ))
+        }
         </div>
-        <div className="flex justify-center p-6">
-          <Button />
-        </div>
+        {
+          showButton && (
+            <div className="flex justify-center p-6">
+              <Button
+                loading={isLoading}
+                onClick={loadMore}
+              >
+                LOAD MORE
+              </Button>
+            </div>
+          )
+        }
       </main>
     </div>
   )
