@@ -2,10 +2,10 @@ import type { NextPage } from 'next'
 
 interface ButtonProps {
   loading?: boolean
-  onClick: () => Promise<void>
+  onClick: (() => Promise<void>) | (() => void)
 }
 
-const Button: NextPage <ButtonProps> = ({
+const Button: NextPage<ButtonProps> = ({
   children,
   loading,
   onClick,

@@ -90,10 +90,8 @@ input TableUserFilterInput {
 input UpdateUserInput {
 	id: ID!
 	name: String
-	dob: AWSDate
 	address: String
 	description: String
-	createdAt: AWSDateTime
 	updatedAt: AWSDateTime
 }
 

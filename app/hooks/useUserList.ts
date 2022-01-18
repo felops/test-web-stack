@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/client'
 
 import { LIST_USERS } from '../graphql/queries/listUsers'
 import { Query, User } from '../graphql/types'
+import { Profile } from '../context/modal'
 
 const LIMIT = 6
 
@@ -69,10 +70,24 @@ export const useUserList = () => {
     }
   }, [isLoadingData])
 
+  const updateUserInfo = (profile: Profile) => {
+    const filteredList = users.filter(user => user.id !== profile.id)
+    const modifiedUser = users.find(user => user.id === profile.id) as User
+    const updatedUser = {
+      ...modifiedUser,
+      ...profile,
+    }
+
+    filteredList.unshift(updatedUser)
+
+    setUsers(filteredList)
+  }
+
   return {
     users,
     isLoading,
     showButton,
     loadMore,
+    updateUserInfo,
   }
 }

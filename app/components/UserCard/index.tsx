@@ -7,6 +7,7 @@ interface UserProps {
   description: string
   id: string
   name: string
+  onClick: () => void
 }
 
 const UserCard: NextPage<UserProps> = ({
@@ -14,9 +15,10 @@ const UserCard: NextPage<UserProps> = ({
   description,
   id,
   name,
+  onClick,
 }) => {
   return (
-    <div className="basis-1/3 group">
+    <div className="basis-1/3 group" onClick={onClick}>
       <div className="bg-white rounded-md cursor-pointer hover:shadow-md px-8 py-10 pt-6 m-6">
         <div className="flex justify-end ease-in duration-300 opacity-0 group-hover:opacity-100">
           <svg fill="none" height="19" viewBox="0 0 19 19" width="19" xmlns="http://www.w3.org/2000/svg">
